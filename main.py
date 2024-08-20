@@ -70,11 +70,10 @@ class MainApp(ctk.CTk):
             width=200, 
             height=40
         )
-
         explore_button.place(relx=0.5, rely=0.9, anchor="center")
 
         if self.logged_in_user:
-            self.button_login_signup.configure(text=self.logged_in_user[4], command=self.logout)
+            self.button_login_signup.configure(text=self.logged_in_user[4], command=self.show_logout_options)
         else:
             self.button_login_signup.configure(text="Login/Signup", command=self.show_login_signup)
 
@@ -88,7 +87,6 @@ class MainApp(ctk.CTk):
             self.contact_us_frame.destroy()
         except:
             pass
-
         # Create a new frame for the "Contact Us" content
         self.contact_us_frame = ctk.CTkFrame(self, width=400, height=300, fg_color="#ffffff", corner_radius=10)
         self.contact_us_frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -125,7 +123,6 @@ class MainApp(ctk.CTk):
             self.about_us_frame.destroy()
         except:
             pass
-
         # Create a new frame for the "Contact Us" content
         self.about_us_frame = ctk.CTkFrame(self, width=600, height=500, fg_color="#ffffff", corner_radius=10)
         self.about_us_frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -143,10 +140,8 @@ class MainApp(ctk.CTk):
 
             Thank you for choosing Pawsy Meof Pet Adoption Center as your trusted source for all things pets. We look forward to helping you find your next best friend and ensuring that every pet lives a happy, healthy, and fulfilling life.
             """
-
         contact_label = ctk.CTkLabel(self.about_us_frame, text=about_text, wraplength=380, justify="left", text_color="black")
         contact_label.pack(padx=20, pady=20)
-
         # Add a "Cancel" button to close the contact frame
         cancel_button = ctk.CTkButton(
             self.about_us_frame, 
@@ -157,7 +152,6 @@ class MainApp(ctk.CTk):
             width=100, 
             height=30
         )
-
         cancel_button.pack(pady=10)
 
 
@@ -352,7 +346,8 @@ class MainApp(ctk.CTk):
         # self.old_username=self.logged_in_user[1]
         # self.old_phone = self.logged_in_user[3]
         # self.old_name = self.logged_in_user[4]
-        save_button = ctk.CTkButton(edit_frame, text="Save", command=lambda: self.save_edits(new_username_entry.get(), new_phone_entry.get(), new_name_entry.get()))
+        save_button = ctk.CTkButton(edit_frame, text="Save", 
+                                    command=lambda: self.save_edits(new_username_entry.get(), new_phone_entry.get(), new_name_entry.get()))
         save_button.grid(row=3, column=0, padx=10, pady=10)
 
         cancel_button = ctk.CTkButton(edit_frame, text="Cancel", command=self.show_logout_options)
